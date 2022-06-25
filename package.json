@@ -1,0 +1,40 @@
+{
+  "name": "temp",
+  "version": "1.0.0",
+  "description": "Maya module",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mayahq/mayadev/issues"
+  },
+  "homepage": "#readme",
+  "nodepath": "src/nodes",
+  "nodeRedModuleName": "temp",
+  "node-red": {
+    "nodes": {
+      "weather": "src/nodes/weather/weather.node.js"
+    }
+  },
+  "mayaDetails": {
+    "name": "temp",
+    "version": "1.0.0",
+    "description": "Maya module",
+    "author": "",
+    "type": "git",
+    "needsUserProfile": false,
+    "thumbnail": "",
+    "repository": {
+      "type": "git",
+      "url": "git+.git"
+    }
+  },
+  "dependencies": {
+    "@mayahq/module-sdk": "^2.0.9"
+  }
+}

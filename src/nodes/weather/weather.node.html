@@ -1,0 +1,94 @@
+<script type='text/javascript'>
+    RED.nodes.registerType("weather", {
+        category: "Temp",
+        color: "#8BBDD9",
+        defaults: {
+            name: {
+                value: ""
+            },
+            isProfileConfigNode: {
+                value: false
+            },
+            city: {
+                value: "London"
+            },
+            payloadTypecity: {
+                value: "str"
+            },
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "fa-file-code-o.png",
+        label: function() {
+            return this.name || "weather"
+        },
+        paletteLabel: "weather",
+        exportable: true,
+        oneditprepare: function() {
+            if (this.payloadTypecity === null) {
+                if (this.city === "") {
+                    this.payloadTypecity = "date"
+                } else {
+                    this.payloadTypecity = "str"
+                }
+            } else if (this.payloadTypecity === 'string' || this.payloadTypecity === 'none') {
+                this.payloadTypecity = "str"
+            }
+
+            $("#node-input-payloadTypecity").val(this.payloadTypecity)
+            $("#node-input-city").typedInput({
+                default: "str",
+                typeField: $("#node-input-payloadTypecity"),
+                types: ["msg", "str"]
+            })
+            $("#node-input-city").typedInput("type", this.payloadTypecity)
+
+        },
+        oneditsave: function() {},
+        oneditcancel: function() {},
+        oneditdelete: function() {},
+        oneditresize: function() {},
+        onpaletteadd: function() {},
+        onpaletteremove: function() {}
+    });
+</script>
+
+<script type="text/html" data-template-name="weather">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" style="width:70%;" placeholder="Name" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-city">city</label>
+        <input type="text" id="node-input-city"></input>
+        <input type="hidden" id="node-input-payloadTypecity">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="weather">
+    <h2>Description</h2>
+    <p>Query opens tabs based on criteria like URL, muted status</p>
+
+    <h2>Config</h2>
+    <dl class="message-properties">
+
+        <dt>payload<span class="property-type">various</span></dt>
+        <dd>The configured payload of the message.</dd>
+
+        <dt class="optional">topic <span class="property-type">string</span></dt>
+        <dd>An optional property</dd>
+
+    </dl>
+
+
+    <h2>Outputs</h2>
+    <dl class="message-properties">
+
+        <dt>payload<span class="property-type">various</span></dt>
+        <dd>The configured payload of the message.</dd>
+
+        <dt class="optional">topic <span class="property-type">string</span></dt>
+        <dd>An optional property</dd>
+
+    </dl>
+</script>
